@@ -1,0 +1,88 @@
+<h3 class="text-center" >Mutabakat Onay Ekranı</h3>
+<div *ngIf="pageExpired" class="alert alert-danger" role="alert">
+    Erişmeye çalıştığınız sayfa geçerliliğini yitirmiş veya daha önce işlem yapılmış. İşleminize eFirma üzerinden devam edebilirsiniz.
+  </div>
+<form (ngSubmit) = "onSubmit()" *ngIf="edited">
+
+<div class="d-flex justify-content-around">
+    
+    <table class="table">
+        <tr>
+            <th scope="col">{{recon.senderVendorName}}</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="10"><label><b>Tarih : </b></label>{{recon.reconDate}}</td>
+        </tr>
+        <td></td>
+        <td colspan="10"><label><b>Mutabakat No :</b> </label> {{recon.reconID}}</td>
+    </table>
+</div>
+
+<b>{{recon.receiverVendorName}}</b>
+
+<hr>
+<div class="d-flex justify-content-around">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Cari Hesap Bakiyeniz</th>
+                <th scope="col">Para Birimi</th>
+                <th scope="col">Borç-Alacak</th>
+                <th scope="col">Bakiyemiz</th>
+                <th scope="col">Para Birimi</th>
+                <th scope="col">Borç-Alacak</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th >{{recon.balance}}</th>
+                <th >{{recon.currencyCode}}</th>
+                <th >{{recon.balanceType}}</th>
+                <th >  <input type="number" class ="form-control" id = "inBalance"
+                    [(ngModel)] = "recon.inBalance" name = "Bakiyemiz" required ></th>
+                <th >{{recon.inCurrencyCode}}</th>
+                <th > <select class="form-select" name="inBalanceTyp" id="exampleFormControlSelect1" [(ngModel)] = "recon.inBalanceType" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option >Borç</option>
+                    <option>Alacak</option>
+                  </select>
+                </th>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-end">
+    <table>
+        <tr>
+            <td>
+    <!-- <img class="ng-star-inserted" width="120px" id={{recon.captchaIdentifier} src="data:image/jpeg;base64,{{recon.captchaImg}}"/>-->
+
+    <img [src]="ImgUrl " width="150px" alt="captcha" name=captchaImg id={{recon.captchaIdentifier}} />
+</td>
+<td>
+    <input name ="captcha" class ="form-control"  type="text" class ="form-control" id = "captcha" [(ngModel)] = "recon.captchaText" placeholder="Güvenlik kodu" required >
+</td>
+<td>
+      <!-- <button type="submit" class="btn btn-success">Onayla</button>-->
+    <button class = "btn btn-success" type ="submit" >Mutabakatı Onayla</button>
+</td>
+    <tr>    
+</table>
+</div>
+
+</form>
+
+
+<footer class="text-center text-white fixed-bottom" style="background-color:white;">
+    <!-- Grid container -->
+    <div class="container p-4"></div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color:rgb(22, 80, 170);">
+      © 2021 Turkcell
+    </div>
+    <!-- Copyright -->
+  </footer>
